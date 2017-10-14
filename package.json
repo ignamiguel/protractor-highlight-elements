@@ -1,0 +1,24 @@
+{
+  "name": "protractor-highlight-elements",
+  "version": "1.0.0",
+  "description": "Protractor helper to highlight elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ignamiguel/protractor-highlight-elements.git"
+  },
+  "keywords": [
+    "protractor",
+    "highlight",
+    "elements"
+  ],
+  "author": "ignamiguel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ignamiguel/protractor-highlight-elements/issues"
+  },
+  "homepage": "https://github.com/ignamiguel/protractor-highlight-elements#readme"
+}
