@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/ignamiguel/protractor-highlight-elements/issues"
   },
-  "homepage": "https://github.com/ignamiguel/protractor-highlight-elements#readme"
+  "homepage": "https://github.com/ignamiguel/protractor-highlight-elements#readme",
+  "dependencies": {
+    "jasmine-spec-reporter": "^4.2.1",
+    "protractor": "^5.1.2"
+  }
 }

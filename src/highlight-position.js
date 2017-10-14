@@ -1,25 +1,9 @@
+const HCommons = require('./highlight-common');
+const Config = require('../config/highlight-config');
+
 module.exports = function() {
-  this.started = false;
-
-  this.init = () =>  {
-    if (!this.started) {
-      const createKeyFrameScript = `
-      var style = document.createElement('style');\
-      style.type = 'text/css';\
-      var keyFrames = '\
-      @keyframes animateBorderOne {\
-          to {\
-            outline-color: #FF0000;\
-            box-shadow: 0 0 0 5px #E0E4CC;\
-          }\
-        }';
-    style.innerHTML = keyFrames;
-    document.getElementsByTagName('head')[0].appendChild(style);`;
-      browser.executeScript(createKeyFrameScript);
-      // this.started = true;
-    }
-  }
-
+  this.hCommons = new HCommons();
+  this.config = new Config();
   this.checkError = (error) => {
     const msg = error.message;
     let startingPoint = msg.indexOf('is not clickable at point');
@@ -31,17 +15,17 @@ module.exports = function() {
     // console.log(point);
     startingPoint = point.indexOf('(');
     endingPoint = point.indexOf(',');
-    const top = point.slice(startingPoint + 1, endingPoint);
+    const left = point.slice(startingPoint + 1, endingPoint);
     startingPoint = point.indexOf(',');
     endingPoint = point.indexOf(')');
-    const left = point.slice(startingPoint + 2, endingPoint);
+    const top = point.slice(startingPoint + 2, endingPoint);
 
-    // console.log(`top='${top}' left='${left}'`);
-    this.highlightPosition(left, top, 10);
+    // console.log(`left='${left}' top='${top}'`);
+    this.highlightPosition(top, left, 10);
   }
 
   this.highlightPosition = (top, left, duration) => {
-    this.init();
+    this.hCommons.checkKeyFrameRule();
     const script = `var positionDiv = document.createElement("div");
     positionDiv.setAttribute("style",
     "top: ${top}px;left: ${left}px;color: #FFFF00; outline: 5px dashed #FFFF00;\
@@ -50,7 +34,7 @@ module.exports = function() {
     positionDiv.innerHTML = '<div style="\
     width: 0;\
     height: 0;\
-    border-bottom: 16px solid red;\
+    border-bottom: 16px solid ${this.config.position.arrowColor};\
     border-left: 8px solid transparent;\
     border-right: 8px solid transparent;\
     float: left;\
