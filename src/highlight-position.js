@@ -4,23 +4,19 @@ const Config = require('../config/highlight-config');
 module.exports = function() {
   this.hCommons = new HCommons();
   this.config = new Config();
+
   this.checkError = (error) => {
     const msg = error.message;
     let startingPoint = msg.indexOf('is not clickable at point');
     let endingPoint = msg.indexOf('. Other element would receive the click:');
     const offset = 26;
-
     const point = msg.slice(startingPoint + offset, endingPoint);
-
-    // console.log(point);
     startingPoint = point.indexOf('(');
     endingPoint = point.indexOf(',');
     const left = point.slice(startingPoint + 1, endingPoint);
     startingPoint = point.indexOf(',');
     endingPoint = point.indexOf(')');
     const top = point.slice(startingPoint + 2, endingPoint);
-
-    // console.log(`left='${left}' top='${top}'`);
     this.highlightPosition(top, left, 10);
   }
 
@@ -41,7 +37,7 @@ module.exports = function() {
     transform: rotate(-45deg);"></div>';
     document.children[0].children[1].appendChild(positionDiv);
     setTimeout(function(){ positionDiv.remove(); }, ${duration} * 1000);`;
-    browser.executeScript(script);
-    return browser.sleep(duration * 1000);
+    return browser.executeScript(script)
+      .then(() => browser.sleep(duration * 1000));
   }
 }

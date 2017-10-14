@@ -4,6 +4,6 @@ module.exports = function () {
   };
 
   this.position = {
-    arrowColor: 'blue'
+    arrowColor: 'red'
  };
 }
