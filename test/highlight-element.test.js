@@ -14,7 +14,7 @@ const duration = 2;
 
 describe('"the-internet" Protractor DEMO', ()=> {
   it('should navigate to login page', () => {
-    browser.get('http://localhost:9292/login');
+    browser.get('http://the-internet.herokuapp.com/login');
     browser.wait(EC.presenceOf(headerLabel));
     
     h.highlightElement(headerLabel, duration);
