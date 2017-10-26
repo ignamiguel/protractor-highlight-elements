@@ -1,9 +1,16 @@
-module.exports = function () {
-  const defaultTimeout = 10000;
-  this.started = false;
-  this.keyFrameName = 'animateBorderOne';
+import { 
+  browser,
+  ExpectedConditions,
+  promise as wdpromise,
+  ProtractorExpectedConditions 
+} from 'protractor';
 
-  this.checkKeyFrameRule = () => {
+export class HighlightCommon {
+  public readonly defaultTimeout = 10000;
+  public readonly keyFrameName = 'animateBorderOne';
+  public readonly expectedConditions: ProtractorExpectedConditions = ExpectedConditions;
+
+  public checkKeyFrameRule(): wdpromise.Promise<{}> {
     // If findKeyframesRule function is not defined, define it
     const defineFindKeyframeFunctionScript = `if(typeof findKeyframesRule == 'undefined') {
       findKeyframesRule = (rule) => {\
@@ -31,7 +38,7 @@ module.exports = function () {
     });
   }
 
-  this.createKeyFrameRule = () =>  {
+  public createKeyFrameRule(): wdpromise.Promise<{}> {
     const createKeyFrameScript = `
     var style = document.createElement('style');\
     style.type = 'text/css';\

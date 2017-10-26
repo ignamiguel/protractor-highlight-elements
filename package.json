@@ -4,7 +4,11 @@
   "description": "Protractor helper to highlight elements",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "node_modules/typescript/bin/tsc",
+    "pretest": "npm run build",
+    "test": "protractor dist/config/protractor.config"
   },
   "repository": {
     "type": "git",
@@ -24,5 +28,8 @@
   "dependencies": {
     "jasmine-spec-reporter": "^4.2.1",
     "protractor": "^5.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.5.3"
   }
 }

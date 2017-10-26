@@ -1,11 +1,15 @@
-const HCommons = require('./highlight-common');
+import { HighlightCommon } from './highlight-common';
+import { browser, promise as wdpromise } from 'protractor';
 const Config = require('../config/highlight-config');
 
-module.exports = function() {
-  this.hCommons = new HCommons();
-  this.config = new Config();
+export class HighlightPosition extends HighlightCommon {
+  public readonly config = new Config();
 
-  this.checkError = (error) => {
+  constructor() {
+    super();
+  }
+
+  public checkError(error: any) {
     const msg = error.message;
     let startingPoint = msg.indexOf('is not clickable at point');
     let endingPoint = msg.indexOf('. Other element would receive the click:');
@@ -21,8 +25,8 @@ module.exports = function() {
     this.highlightPosition(top, left, this.config.position.defaultDuration);
   }
 
-  this.highlightPosition = (top, left, duration) => {
-    this.hCommons.checkKeyFrameRule();
+  public highlightPosition(top: string, left: string, duration: number): wdpromise.Promise<void> {
+    this.checkKeyFrameRule();
     const script = `var positionDiv = document.createElement("div");
     positionDiv.setAttribute("style",
     "top: ${top}px;left: ${left}px;color: #FFFF00; outline: 5px dashed #FFFF00;\
