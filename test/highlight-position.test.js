@@ -14,7 +14,7 @@ describe('"the-internet" Protractor DEMO', ()=> {
 
     browser.wait(EC.presenceOf(wallyImg));
     browser.sleep(dreamTime);
-    // he.highlightElement(wallyImg);
+    he.highlightElement(wallyImg);
     browser.sleep(dreamTime);
     wallyImg.click().then(() => {}, (error) => {
       hp.checkError(error);

@@ -17,7 +17,8 @@ module.exports = function() {
     startingPoint = point.indexOf(',');
     endingPoint = point.indexOf(')');
     const top = point.slice(startingPoint + 2, endingPoint);
-    this.highlightPosition(top, left, 10);
+
+    this.highlightPosition(top, left, this.config.position.defaultDuration);
   }
 
   this.highlightPosition = (top, left, duration) => {

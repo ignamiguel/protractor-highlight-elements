@@ -4,6 +4,7 @@ module.exports = function () {
   };
 
   this.position = {
-    arrowColor: 'red'
+    arrowColor: 'red',
+    defaultDuration: 10
  };
 }
