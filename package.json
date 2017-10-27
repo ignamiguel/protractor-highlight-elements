@@ -4,8 +4,9 @@
   "description": "Protractor helper to highlight elements",
   "main": "index.js",
   "scripts": {
+    "webdriver-update": "webdriver-manager update",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean",
+    "prebuild": "npm run clean && npm run webdriver-update",
     "build": "node_modules/typescript/bin/tsc",
     "pretest": "npm run build",
     "test": "protractor dist/config/protractor.config"

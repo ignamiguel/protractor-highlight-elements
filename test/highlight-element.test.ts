@@ -1,5 +1,6 @@
 // Highlight Element
 import { browser, element, by } from 'protractor';
+import { HighlightElement } from '../src/highlight-element';
 
 const EC = require('protractor').ExpectedConditions;
 const usernameField = element(by.id('username'));
@@ -10,8 +11,7 @@ const logoutButton = element(by.css('[class="button secondary radius"]'));
 const successLoginLabel = element(by.css('[class="flash success"]'));
 const timeout = 600 * 1000;
 const dreamTime = 1 * 1000;
-const HighlightElement = require('../src/highlight-element');
-const h = new HighlightElement();
+const highlightElement = new HighlightElement();
 const duration = 2;
 
 describe('"the-internet" Protractor DEMO', ()=> {
@@ -19,32 +19,32 @@ describe('"the-internet" Protractor DEMO', ()=> {
     browser.get('http://localhost:9292/login');
     browser.wait(EC.presenceOf(headerLabel));
     
-    h.highlightElement(headerLabel, duration);
+    highlightElement.highlightElement(headerLabel, duration);
     expect(headerLabel.getText()).toBe('Login Page');
   }, timeout);
 
   it('should login with user and password', () => {
     browser.wait(EC.presenceOf(usernameField));
 
-    h.highlightElement(usernameField, duration);
+    highlightElement.highlightElement(usernameField, duration);
     usernameField.sendKeys('tomsmith');
-    h.highlightElement(passwordField, duration);
+    highlightElement.highlightElement(passwordField, duration);
     passwordField.sendKeys('SuperSecretPassword!');
 
-    h.highlightElement(loginButton, duration);
+    highlightElement.highlightElement(loginButton, duration);
     loginButton.click();
     
-    h.highlightElement(successLoginLabel, duration);
+    highlightElement.highlightElement(successLoginLabel, duration);
     expect(successLoginLabel.isPresent()).toBe(true);
   }, timeout);
 
   it('should logout', () => {
     browser.sleep(dreamTime);
 
-    h.highlightElement(logoutButton, duration);
+    highlightElement.highlightElement(logoutButton, duration);
     logoutButton.click();
 
-    h.highlightElement(headerLabel, duration);
+    highlightElement.highlightElement(headerLabel, duration);
     expect(headerLabel.getText()).toBe('Login Page');
   }, timeout)
 });
