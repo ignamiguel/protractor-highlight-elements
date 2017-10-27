@@ -6,7 +6,10 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
-    "types": [],
+    "types": [
+      "jasmine",
+      "jasminewd2"
+    ],
     "typeRoots": [],
     "noUnusedParameters": true,
     "noUnusedLocals": true

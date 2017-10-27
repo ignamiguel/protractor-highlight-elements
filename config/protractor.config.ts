@@ -1,3 +1,4 @@
+import { browser } from 'protractor';
 const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {
@@ -20,7 +21,7 @@ exports.config = {
  },
  suites: {
    demo1: [
-     '../test/demo-1/*.js'
+     '../test/*.js'
    ]
  },
 //  SELENIUM_PROMISE_MANAGER: false

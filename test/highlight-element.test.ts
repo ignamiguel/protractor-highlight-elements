@@ -1,4 +1,6 @@
 // Highlight Element
+import { browser, element, by } from 'protractor';
+
 const EC = require('protractor').ExpectedConditions;
 const usernameField = element(by.id('username'));
 const passwordField = element(by.id('password'));

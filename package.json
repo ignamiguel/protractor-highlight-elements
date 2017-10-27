@@ -30,6 +30,8 @@
     "protractor": "^5.1.2"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.5.53",
+    "@types/jasminewd2": "^2.0.2",
     "typescript": "^2.5.3"
   }
 }
