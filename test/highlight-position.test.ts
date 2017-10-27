@@ -18,7 +18,7 @@ describe('"the-internet" Protractor DEMO', ()=> {
     highlightElement.highlightElement(wallyImage);
     browser.sleep(dreamTime);
     wallyImage.click().then(() => {}, (error) => {
-      highlightPosition.checkError(error);
+      highlightPosition.evaluateNotClickableError(error);
     });
     wallyImage.click();
     browser.sleep(dreamTime);

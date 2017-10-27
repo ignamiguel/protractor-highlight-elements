@@ -9,9 +9,12 @@ export class HighlightPosition extends HighlightCommon {
     super();
   }
 
-  public checkError(error: any) {
+  public evaluateNotClickableError(error: any): wdpromise.Promise<void> {
     const msg = error.message;
     let startingPoint = msg.indexOf('is not clickable at point');
+    if( startingPoint < 0) {
+      return;
+    }
     let endingPoint = msg.indexOf('. Other element would receive the click:');
     const offset = 26;
     const point = msg.slice(startingPoint + offset, endingPoint);
@@ -22,7 +25,7 @@ export class HighlightPosition extends HighlightCommon {
     endingPoint = point.indexOf(')');
     const top = point.slice(startingPoint + 2, endingPoint);
 
-    this.highlightPosition(top, left, this.config.position.defaultDuration);
+    return this.highlightPosition(top, left, this.config.position.defaultDuration);
   }
 
   public highlightPosition(top: string, left: string, duration: number): wdpromise.Promise<void> {
